@@ -1,10 +1,10 @@
-export interface ISignUpRequest {
+export interface IRegistrationRequest {
 	phone: string
 	code: string
 	timestamp?: number
 }
 
-export interface ISignUpResponse {
+export interface IRegistrationResponse {
 	phone_to_auth: string
 }
 

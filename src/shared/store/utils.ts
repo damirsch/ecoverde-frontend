@@ -34,8 +34,6 @@ export const baseQueryWithReauth = async (
 	let result = await baseQuery(args, api, extraOptions)
 
 	if (result.error && result.error.status === 401) {
-		console.log("asdf")
-
 		const refreshResult = await api.dispatch(authApi.endpoints.refresh.initiate(null))
 		if (refreshResult.data?.accessToken) {
 			Cookies.set(ACCESS_TOKEN, refreshResult.data.accessToken || "")

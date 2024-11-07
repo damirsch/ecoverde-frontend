@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react"
-import { ITokensResponse, ISignUpResponse } from "./models/types"
+import { IRegistrationResponse } from "./models/types"
 import { getToken } from "../utils"
 
 export const authApi = createApi({
@@ -17,33 +17,17 @@ export const authApi = createApi({
 	}),
 	refetchOnFocus: true,
 	endpoints: (build) => ({
-		signUp: build.mutation<ISignUpResponse, { phone: string }>({
+		sign: build.mutation<IRegistrationResponse, { phone: string }>({
 			query: (body) => ({
-				url: `/login_doctor`,
+				url: `/login`,
 				method: "POST",
 				body,
 			}),
 		}),
 
-		signUpUser: build.mutation<ISignUpResponse, { phone: string }>({
+		signUp: build.mutation<IRegistrationResponse, { phone: string }>({
 			query: (body) => ({
-				url: `/login_user`,
-				method: "POST",
-				body,
-			}),
-		}),
-
-		checkCall: build.mutation<ITokensResponse, { phone: string }>({
-			query: (body) => ({
-				url: `/check_call`,
-				method: "POST",
-				body,
-			}),
-		}),
-
-		getTimeToCode: build.mutation<{ timeAwait: number }, { phone: string }>({
-			query: (body) => ({
-				url: `/check_time`,
+				url: `/login`,
 				method: "POST",
 				body,
 			}),
@@ -66,10 +50,4 @@ export const authApi = createApi({
 	}),
 })
 
-export const {
-	useSignUpMutation,
-	useCheckCallMutation,
-	useGetTimeToCodeMutation,
-	useLogoutMutation,
-	useSignUpUserMutation,
-} = authApi
+export const { useSignUpMutation, useLogoutMutation } = authApi
