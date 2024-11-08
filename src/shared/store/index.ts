@@ -3,12 +3,14 @@ import { configureStore } from "@reduxjs/toolkit"
 import { setupListeners } from "@reduxjs/toolkit/query"
 import { authReducer } from "./auth/auth.slice"
 import { authApi } from "./auth/auth.api"
+import { plantsApi } from "./plants/plants.api"
 
 export const makeStore = () => {
 	return configureStore({
 		reducer: {
 			auth: authReducer,
 			[authApi.reducerPath]: authApi.reducer,
+			[plantsApi.reducerPath]: plantsApi.reducer,
 		},
 		middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(authApi.middleware),
 	})

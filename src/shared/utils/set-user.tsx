@@ -2,7 +2,6 @@
 // import { useAppDispatch } from "@/shared/hooks/redux"
 // import { useEffect } from "react"
 // import { useGetDoctorSettingsQuery } from "../store/doctor/doctor.api"
-// import { setDoctor } from "../store/doctor/doctor.slice"
 
 // const SetDoctor = () => {
 // 	const { data } = useGetDoctorSettingsQuery(null)
