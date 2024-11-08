@@ -4,14 +4,21 @@ import { useRef, useState, SetStateAction, Dispatch } from "react"
 import { Canvas, GroupProps, ThreeEvent, useFrame } from "@react-three/fiber"
 import { Image, Environment, ScrollControls, useScroll, useTexture } from "@react-three/drei"
 import { easing } from "maath"
-import "./util"
 import { PLANT_TYPE } from "@/shared/store/types"
+import PlantTab from "./tabs"
+import classNames from "classnames"
+import "./util"
 
 export default function PlantsCarousel() {
 	const [currentTab, setCurrentTab] = useState<PLANT_TYPE | null>(null)
+	console.log(currentTab)
 
 	return (
 		<>
+			<PlantTab currentTab={currentTab} setCurrentTab={setCurrentTab} />
+			{/* <div className='bg-red-300'>sdffd</div> */}
+			{/* <div className={"-z-10"}>
+			</div> */}
 			<Canvas camera={{ position: [0, 0, 100], fov: 15 }} style={{ height: "100vh" }}>
 				<fog attach='fog' args={["#224B28", 8.5, 12]} />
 				<ScrollControls pages={4} infinite>
@@ -49,7 +56,6 @@ function Carousel({
 	setCurrentTab?: Dispatch<SetStateAction<PLANT_TYPE | null>>
 }) {
 	const plants: PLANT_TYPE[] = ["CACTUS", "FERN", "FICUS", "MONSTERA_DELICIOSA", "SANSEVIERIA"]
-
 	const handleClick = (index: number) => {
 		setCurrentTab?.(plants[index])
 	}

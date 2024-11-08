@@ -7,7 +7,7 @@ export const plantsApi = createApi({
 	baseQuery: createBaseQuery("/plants"),
 	refetchOnFocus: true,
 	endpoints: (build) => ({
-		getOnePlant: build.mutation<null, string>({
+		getOnePlant: build.query<{ type: PLANT_TYPE; id: string; image_irl: string }, string>({
 			query: (id) => ({
 				url: `/${id}`,
 				method: "GET",

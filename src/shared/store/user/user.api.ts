@@ -6,7 +6,6 @@ import { User } from "../types"
 export const userApi = createApi({
 	reducerPath: "user/api",
 	baseQuery: createBaseQuery("/user"),
-	tagTypes: ["UserInfo", "UserImage"],
 	refetchOnFocus: true,
 	endpoints: (build) => ({
 		changeUserInfo: build.mutation<null, ChangeUserInfoReq>({
@@ -15,15 +14,13 @@ export const userApi = createApi({
 				method: "PATCH",
 				body,
 			}),
-			invalidatesTags: ["UserInfo"],
 		}),
 
-		getUserProfile: build.query<User, number | string>({
-			query: (id) => ({
-				url: `${id}/user_info`,
+		getUserProfile: build.query<User, null>({
+			query: () => ({
+				url: `/`,
 				method: "GET",
 			}),
-			providesTags: ["UserInfo"],
 		}),
 	}),
 })
